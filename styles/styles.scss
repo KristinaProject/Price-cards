@@ -1,0 +1,144 @@
+@use "variables" as lock;
+@use "_fonts" as fo;
+@use "mixins" as mix;
+
+html * {
+  box-sizing: border-box;
+
+}
+
+body {
+  background-color: #f7f8fc;
+  @include mix.flex-mode;
+  justify-content: center;
+  height: lock.$all-height;
+  @include mix.main-width;
+}
+
+.container {
+  max-width: 1240px;
+  @include mix.main-width;
+  max-height: 850px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  gap: 5px;
+  color: fo.$main-color;
+  font-family: fo.$main-font;
+
+  .card {
+    background-color: lock.$main-card-bg;
+    @include mix.flex-mode;
+    @include mix.direction;
+    justify-content: space-between;
+    padding: 50px;
+
+    .title {
+      font-weight: 800;
+      font-size: 22px;
+    }
+
+    .price {
+      @include mix.flex-mode;
+      @include mix.direction;
+      @include mix.main-width;
+      
+
+      &__start {
+        font-size: fo.$small-font
+      }
+
+      &__container {
+        display: grid;
+        grid-template-areas:
+          "num euro"
+          "num month";
+          grid-template-rows: 1fr 1fr;
+          background-color: lock.$price-color-bg;
+          border-radius: lock.$price-border-r;
+          width: 100%;
+
+
+        &-number {
+          grid-area: num;
+          font-size: 56px;
+          font-weight: 900;
+          text-align: right;
+        }
+
+        &-euro {
+          grid-area: euro;
+          align-self: end;
+          @include mix.euro-month;
+        }
+
+        &-month {
+          grid-area: month;
+          @include mix.euro-month;
+        }
+      }
+    }
+
+    &__description {
+      @include mix.text-center;
+      font-weight: 600;
+    }
+
+    &__button-container {
+      @include mix.flex-mode;
+      @include mix.direction;
+      width: 90%;
+
+      button{
+        color: lock.$button-color;
+        border: 1px solid lock.$button-color;
+        background-color: lock.$main-card-bg;
+        padding: 12px 20px;
+        border-radius: 4px;
+        @include mix.main-width;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+
+      p {
+        all: unset;
+        font-size: fo.$small-font;
+        color: fo.$second-color;
+      }
+
+    }
+
+    &__list {
+      flex-basis: 50%;
+      @include mix.flex-mode;
+      @include mix.direction;
+
+
+      p{
+        @include mix.text-center;
+        font-size: fo.$small-font;
+        color: fo.$second-color;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        @include mix.text-center;
+        @include mix.flex-mode;
+        @include mix.direction;
+        justify-content: space-between;
+        flex-grow: 1;
+
+        li {
+          text-decoration: underline dotted rgb(212, 210, 210);
+
+          .list-grey {
+            color: fo.$second-color;
+            font-size: fo.$small-font;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@mixin main-width {
+  width: 100%;
+}
+
+@mixin flex-mode {
+  display: flex;
+  align-items: center;
+}
+
+@mixin euro-month {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+@mixin text-center {
+  text-align: center;
+}
+
+@mixin direction {
+  flex-direction: column;
+}
